@@ -1,24 +1,14 @@
 FROM codercom/code-server:latest
 
 USER root
+RUN apt update && apt install -y git nodejs npm
 
-# Cài thêm tool nếu muốn
-RUN apt update && apt install -y \
-    git \
-    curl \
-    nodejs \
-    npm \
-    && rm -rf /var/lib/apt/lists/*
-
-# Tạo thư mục project
 RUN mkdir -p /home/coder/project
-WORKDIR /home/coder/project
-
-# Set password cho code-server
-ENV PASSWORD=123456
+RUN chown -R coder:coder /home/coder
 
 USER coder
+WORKDIR /home/coder/project
 
-EXPOSE 8080
+ENV PASSWORD=abc123
 
-CMD ["code-server", "--bind-addr", "0.0.0.0:8080", "/home/coder/project"]
+CMD ["code-server", "--bind-addr", "0.0.0.0:8080"]
