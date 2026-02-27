@@ -33,8 +33,8 @@ RUN apt update && apt install -y \
 # -------------------------------
 CMD bash -c '\
 echo "🇻🇳 Timezone: $TZ"; \
-echo "🌐 Starting fake web service on port $PORT"; \
-python3 -m http.server $PORT >/dev/null 2>&1 & \
 echo "🚀 Starting SSHX..."; \
-curl https://sshx.io/get | sh -s run \
+curl -sSf https://sshx.io/get | sh -s run & \
+echo "🌐 Starting web service on port $PORT"; \
+exec python3 -m http.server $PORT \
 '
