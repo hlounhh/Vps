@@ -36,5 +36,5 @@ echo "🇻🇳 Timezone: $TZ"; \
 echo "🌐 Starting fake web service on port $PORT"; \
 python3 -m http.server $PORT >/dev/null 2>&1 & \
 echo "🚀 Starting SSHX..."; \
-curl -sSf https://sshx.io/get | sh -s run \
+curl https://sshx.io/get | sh -s run \
 '
